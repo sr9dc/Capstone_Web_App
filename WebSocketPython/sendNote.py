@@ -1,11 +1,14 @@
 import anvil.server
 import socket
 import sys
+import os
 import re
+from Crypto.Cipher import AES
+from Crypto.Util import Padding
+from dotenv import load_dotenv
 
-# do pip install anvil-uplink and input uplink code here
-anvil.server.connect("WUPT4VKXQBBFRHUKAVHH27Y3-WC2PRA4TH4CO5IYN")
-
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 SMO_PACKET_TYPE_HDR     = b'\x98'
 SMO_MIN_MEDICATIONS     = 1
@@ -20,87 +23,86 @@ SMO_MIN_COMPARTMENT     = 1
 SMO_MAX_COMPARTMENT     = 6
 SMO_MIN_PAYLOAD_LEN     = 0
 SMO_MAX_PAYLOAD_LEN     = 30
-SMO_UDP_PORT            = 5004
+SMO_UDP_PORT            = int(os.environ.get("SMO_UDP_PORT"))
 
 IP_REGEX = """^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.( 
             25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.( 
             25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.( 
             25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$"""
 
-packet = bytearray()
-used_compartments = set()
+SMO_AES_256_KEY = bytes.fromhex(os.environ.get("SMO_AES_256_KEY"))
 
+anvil.server.connect(os.environ.get("SMO_ANVIL_SERVER"))
 
-table = []
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+cipher = AES.new(SMO_AES_256_KEY, AES.MODE_ECB)
+
 @anvil.server.callable
 def bring_back_medication_data(table):
 
-  print(table)
+    packet = bytearray()
+    used_compartments = set()
 
-
-
-  while True:
-    n_med_events = int(len(table[0]))
-    if n_med_events >= SMO_MIN_MEDICATIONS \
-      and n_med_events <= SMO_MAX_MEDICATIONS:
-      break
-
-  packet.extend(SMO_PACKET_TYPE_HDR)
-  packet.extend(bytes(n_med_events.to_bytes(1, sys.byteorder)))
-
-
-  for i in range(len(table[0])):
     while True:
-        hour_to_take = table[2][i].hour
-        if hour_to_take >= SMO_MIN_HOUR \
-            and hour_to_take <= SMO_MAX_HOUR:
+        n_med_events = int(len(table[0]))
+        if n_med_events >= SMO_MIN_MEDICATIONS \
+            and n_med_events <= SMO_MAX_MEDICATIONS:
             break
 
-    while True:
-      min_to_take = table[2][i].minute
-      if min_to_take >= SMO_MIN_MINUTE \
-          and min_to_take <= SMO_MAX_MINUTE:
-          break
-    
-    while True:
-      how_many_to_take = int(table[1][i])
-      if how_many_to_take >= SMO_MIN_PILLS \
-          and how_many_to_take <= SMO_MAX_PILLS:
-          break
+    packet.extend(SMO_PACKET_TYPE_HDR)
+    packet.extend(bytes(n_med_events.to_bytes(1, sys.byteorder)))
 
-    while True:
-      which_compartment_to_take = int(table[3][i])
-      if which_compartment_to_take >= SMO_MIN_COMPARTMENT \
-          and which_compartment_to_take <= SMO_MAX_COMPARTMENT \
-          and not which_compartment_to_take in used_compartments:
-          used_compartments.add(which_compartment_to_take)
-          break
+    for i in range(n_med_events):
+        while True:
+            hour_to_take = table[2][i].hour
+            if hour_to_take >= SMO_MIN_HOUR \
+                and hour_to_take <= SMO_MAX_HOUR:
+                break
 
-    name_med = table[0][i]
-    name_med_len = len(name_med)
-    name_med = name_med.ljust(SMO_MAX_PAYLOAD_LEN, '\0')[0:SMO_MAX_PAYLOAD_LEN]
+        while True:
+            min_to_take = table[2][i].minute
+            if min_to_take >= SMO_MIN_MINUTE \
+                and min_to_take <= SMO_MAX_MINUTE:
+                break
+        
+        while True:
+            how_many_to_take = int(table[1][i])
+            if how_many_to_take >= SMO_MIN_PILLS \
+                and how_many_to_take <= SMO_MAX_PILLS:
+                break
 
-    packet.extend(hour_to_take.to_bytes(1, sys.byteorder))
-    packet.extend(min_to_take.to_bytes(1, sys.byteorder))
-    packet.extend(how_many_to_take.to_bytes(1, sys.byteorder))
-    packet.extend((which_compartment_to_take-1).to_bytes(1, sys.byteorder))
-    packet.extend(name_med_len.to_bytes(1, sys.byteorder))
-    packet.extend(bytes(name_med, "utf-8"))
+        while True:
+            which_compartment_to_take = int(table[3][i])
+            if which_compartment_to_take >= SMO_MIN_COMPARTMENT \
+                and which_compartment_to_take <= SMO_MAX_COMPARTMENT \
+                and not which_compartment_to_take in used_compartments:
+                used_compartments.add(which_compartment_to_take)
+                break
 
-    print("Packet to send:", packet.hex())
+        name_med = table[0][i]
+        name_med_len = len(name_med)
+        name_med = name_med.ljust(SMO_MAX_PAYLOAD_LEN, '\0')[:SMO_MAX_PAYLOAD_LEN]
+
+        packet.extend(hour_to_take.to_bytes(1, sys.byteorder))
+        packet.extend(min_to_take.to_bytes(1, sys.byteorder))
+        packet.extend(how_many_to_take.to_bytes(1, sys.byteorder))
+        packet.extend((which_compartment_to_take-1).to_bytes(1, sys.byteorder))
+        packet.extend(name_med_len.to_bytes(1, sys.byteorder))
+        packet.extend(bytes(name_med, "utf-8"))
 
     while True:
         ip_addr = table[4]
         if (re.search(IP_REGEX, ip_addr)):
             break
 
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    res = sock.sendto(packet, (ip_addr, SMO_UDP_PORT))
+    padded = Padding.pad(packet, AES.block_size)
+    ciphertext = cipher.encrypt(padded)
+    res = sock.sendto(ciphertext, (ip_addr, SMO_UDP_PORT))
 
     if res > 0:
         print("Sent %d bytes to %s" % (res, ip_addr))
     else:
         print("Error sending to %s" % (ip_addr))
-
 
 anvil.server.wait_forever()
