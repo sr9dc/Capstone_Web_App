@@ -32,10 +32,13 @@ IP_REGEX = """^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(
 
 SMO_AES_256_KEY = bytes.fromhex(os.environ.get("SMO_AES_256_KEY"))
 
+#connect to anvil web app ui
 anvil.server.connect(os.environ.get("SMO_ANVIL_SERVER"))
 
+#socket for sending med packet
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
+#AES 256 encryption object
 cipher = AES.new(SMO_AES_256_KEY, AES.MODE_ECB)
 
 @anvil.server.callable
@@ -92,7 +95,8 @@ def bring_back_medication_data(table):
         packet.extend(bytes(name_med, "utf-8"))
 
     while True:
-        ip_addr = table[4]
+        hexip = table[4]
+        ip_addr = ".".join([repr(int(s,16)) for s in hexip.split(":")])
         if (re.search(IP_REGEX, ip_addr)):
             break
 
