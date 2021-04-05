@@ -5,16 +5,6 @@
 *** or simply open an issue with the tag "enhancement".
 -->
 
-<!-- TAKE A LOOK -->
-## Go to the User-Interface
-[UI Example Run](http://tiny.cc/6OhmsApartWebApp)
-
-[Clone my Project on Anvil Works](https://anvil.works/build#clone:WC2PRA4TH4CO5IYN=JDH7VHBT2BBORWIPNKJ2JNWJ)
-
-* Note: This will work when Anvil is linked to the "send.py" Python script.
-* The network packet data can then be sent directly to your Microcontroller. 
-* See "Embedded Work" in Contact section. 
-
 
 ### Built With
 
@@ -48,6 +38,17 @@ When it is time for the user to take their medication, the speaker plays a sound
 The user can stop the sound and LEDs by pressing an okay button to confirm they have taken their medication, and the next medication event will be scheduled automatically. 
 
 The device is a compact, easy-to-use, and affordable solution to unintentional nonadherence. 
+
+
+<!-- TAKE A LOOK -->
+## Go to the User-Interface
+[UI Example Run](http://tiny.cc/6OhmsApartWebApp)
+
+[Clone my Project on Anvil Works](https://anvil.works/build#clone:WC2PRA4TH4CO5IYN=JDH7VHBT2BBORWIPNKJ2JNWJ)
+
+* Note: This will work when Anvil is linked to the "send.py" Python script.
+* The network packet data can then be directly sent to your Microcontroller. 
+* See "Embedded Work" in Contact section. 
 
 
 
