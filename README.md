@@ -42,14 +42,12 @@ The device is a compact, easy-to-use, and affordable solution to unintentional n
 
 <!-- TAKE A LOOK -->
 ## Go to the User-Interface
-[UI Example Run](http://tiny.cc/6OhmsApartWebApp)
+Here is an example run of the User-Interface using Anvil Works: [UI Example Run](http://tiny.cc/6OhmsApartWebApp)
 
-[Clone my Project on Anvil Works](https://anvil.works/build#clone:WC2PRA4TH4CO5IYN=JDH7VHBT2BBORWIPNKJ2JNWJ)
+My Anvil work is here: [Clone my Project on Anvil Works](https://anvil.works/build#clone:WC2PRA4TH4CO5IYN=JDH7VHBT2BBORWIPNKJ2JNWJ)
 
 * Note: This will work when Anvil is linked to the "send.py" Python script.
 * The network packet data can then be directly sent to your Microcontroller. 
-* See "Embedded Work" in Contact section. 
-
 
 
 <!-- CONTRIBUTING -->
@@ -78,6 +76,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Sai Rajuladevi: https://www.linkedin.com/in/sai-rajuladevi/
 
 Forrest Feaser: https://github.com/fdfea
+
 
 
 Project Link: https://github.com/sr9dc/CapstoneWebApp
