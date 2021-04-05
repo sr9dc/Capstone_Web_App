@@ -7,7 +7,13 @@
 
 <!-- TAKE A LOOK -->
 ## Go to the User-Interface
-http://tiny.cc/6OhmsApartWebApp
+[UI Example Run](http://tiny.cc/6OhmsApartWebApp)
+
+[Clone my Project on Anvil Works](https://anvil.works/build#clone:WC2PRA4TH4CO5IYN=JDH7VHBT2BBORWIPNKJ2JNWJ)
+
+* Note: This will work when Anvil is linked to the "send.py" Python script.
+* The network packet data can then be sent directly to your Microcontroller. 
+* See "Embedded Work" in Contact section. 
 
 
 ### Built With
