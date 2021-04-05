@@ -12,7 +12,6 @@
 * [Anvil](https://anvil.works/)
 
 
-
 <!-- GETTING STARTED -->
 ## Topic
 The Smart Medication Organizer (SMO) is a wirelessly programmable, internet-of-things device that assists in the consistent self-administration of pharmaceuticals by patients, in order to reduce nonadherence. 
@@ -39,6 +38,11 @@ When it is time for the user to take their medication, the speaker plays a sound
 The user can stop the sound and LEDs by pressing an okay button to confirm they have taken their medication, and the next medication event will be scheduled automatically. 
 
 The device is a compact, easy-to-use, and affordable solution to unintentional nonadherence. 
+
+
+### Go to the User-Interface
+
+http://tiny.cc/6OhmsApartWebApp
 
 
 <!-- CONTRIBUTING -->
