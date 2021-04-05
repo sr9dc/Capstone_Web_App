@@ -1,4 +1,4 @@
-# Embedded Smart Medication Organizer
+# Embedded Smart Medication Organizer WebApp
 <!--
 *** Thanks for checking out my groups text lab. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -65,8 +65,10 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Sai Rajuladevi: https://www.linkedin.com/in/sai-rajuladevi/
+Forrest Feaser: https://github.com/fdfea
 
-Project Link: [https://github.com/sr9dc/CapstoneWebApp](https://github.com/your_username/repo_name)
+Project Link: https://github.com/sr9dc/CapstoneWebApp
+Embedded Work: https://github.com/fdfea/smart-medication-organizer
 
 
 
