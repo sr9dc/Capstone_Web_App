@@ -65,6 +65,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Sai Rajuladevi: https://www.linkedin.com/in/sai-rajuladevi/
+
 Forrest Feaser: https://github.com/fdfea
 
 Project Link: https://github.com/sr9dc/CapstoneWebApp
