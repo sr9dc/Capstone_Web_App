@@ -1,4 +1,4 @@
-# Embedded Smart Medication Organizer Web Application
+# Embedded Smart Medication Organizer User Interface
 <!--
 *** Thanks for checking out my groups text lab. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
