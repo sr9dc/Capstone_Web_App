@@ -46,7 +46,7 @@ Here is an example run of the User-Interface using Anvil Works: [UI Example Run]
 
 My Anvil work is here: [Clone my Project on Anvil Works](https://anvil.works/build#clone:WC2PRA4TH4CO5IYN=JDH7VHBT2BBORWIPNKJ2JNWJ)
 
-* Note: This will work when Anvil is linked to the "send.py" Python script.
+* Note: This will work when Anvil is linked to the  [sendNote.py](https://github.com/sr9dc/CapstoneWebApp/blob/main/WebSocketPython/sendNote.py) Python script.
 * The network packet data can then be directly sent to your Microcontroller. 
 
 
