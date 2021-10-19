@@ -16,7 +16,7 @@
 ## Topic
 The Smart Medication Organizer (SMO) is a wirelessly programmable, internet-of-things device that assists in the consistent self-administration of pharmaceuticals by patients, in order to reduce nonadherence. 
 
-<img src="smo-outside.jpeg" height="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="smo-inside.jpg" height="250">
+<img src="smo-outside.jpeg" height="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 To accomplish this goal, the SMO provides timed auditory and visual indications to signal to the user to take their medications. 
 
