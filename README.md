@@ -79,6 +79,10 @@ Sai Rajuladevi: https://www.linkedin.com/in/sai-rajuladevi/
 
 Forrest Feaser: https://github.com/fdfea
 
+Sean Davidson
+
+Quin Helfrick
+
 
 
 Project Link: https://github.com/sr9dc/CapstoneWebApp
