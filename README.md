@@ -83,7 +83,7 @@ Sean Davidson
 
 Quin Helfrick
 
-
+<br>
 
 Project Link: https://github.com/sr9dc/CapstoneWebApp
 
