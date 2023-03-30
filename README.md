@@ -85,7 +85,7 @@ Quin Helfrick
 
 <br>
 
-Project Link: https://github.com/sr9dc/CapstoneWebApp
+Publishing Link: https://libraetd.lib.virginia.edu/public_view/2r36tz30c
 
 Embedded Work: https://github.com/fdfea/smart-medication-organizer
 
